@@ -1,0 +1,1 @@
+Get-ComputerInfo | Select-Object -Property CsProcessors, CsSystemType, CsUserName, WindowsProductName | Format-List

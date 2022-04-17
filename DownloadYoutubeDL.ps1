@@ -26,7 +26,7 @@ if ((test-path "$env:APPDATA\youtube-dl") -eq $false) {
 # Check if youtube-dl.exe is already downloaded
 if ((test-path "$env:APPDATA\youtube-dl\youtube-dl.exe") -eq $false) {
     Write-Output "Downloading youtube-dl.exe"
-    Invoke-WebRequest -Uri "https://yt-dl.org/latest/youtube-dl.exe" -OutFile "$env:APPDATA\youtube-dl\youtube-dl.exe"
+    Invoke-WebRequest -Uri "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe" -OutFile "$env:APPDATA\youtube-dl\youtube-dl.exe"
     Write-Output "Finished downloading!"
 }
 

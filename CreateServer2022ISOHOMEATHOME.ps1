@@ -1,96 +1,92 @@
-﻿function Connect-VM
-{
-  [CmdletBinding(DefaultParameterSetName='name')]
+﻿<#
+    .SYNOPSIS
+    Creates a new Server 2022 VM
+
+    .DESCRIPTION
+    Creates a new Server 2022 VM through a CLI
+
+    .EXAMPLE
+    PS> ./CreateServer2022ISO.ps1
+#>
+
+
+function Connect-VM {
+  [CmdletBinding(DefaultParameterSetName = 'name')]
 
   param(
-    [Parameter(ParameterSetName='name')]
+    [Parameter(ParameterSetName = 'name')]
     [Alias('cn')]
-    [System.String[]]$ComputerName=$env:COMPUTERNAME,
+    [System.String[]]$ComputerName = $env:COMPUTERNAME,
 
-    [Parameter(Position=0,
-        Mandatory,ValueFromPipelineByPropertyName,
-        ValueFromPipeline,ParameterSetName='name')]
+    [Parameter(Position = 0,
+      Mandatory, ValueFromPipelineByPropertyName,
+      ValueFromPipeline, ParameterSetName = 'name')]
     [Alias('VMName')]
     [System.String]$Name,
 
-    [Parameter(Position=0,
-        Mandatory,ValueFromPipelineByPropertyName,
-        ValueFromPipeline,ParameterSetName='id')]
-    [Alias('VMId','Guid')]
+    [Parameter(Position = 0,
+      Mandatory, ValueFromPipelineByPropertyName,
+      ValueFromPipeline, ParameterSetName = 'id')]
+    [Alias('VMId', 'Guid')]
     [System.Guid]$Id,
 
-    [Parameter(Position=0,Mandatory,
-        ValueFromPipeline,ParameterSetName='inputObject')]
+    [Parameter(Position = 0, Mandatory,
+      ValueFromPipeline, ParameterSetName = 'inputObject')]
     [Microsoft.HyperV.PowerShell.VirtualMachine]$InputObject,
 
     [switch]$StartVM
   )
 
-  begin
-  {
+  begin {
     Write-Verbose "Initializing InstanceCount, InstanceCount = 0"
-    $InstanceCount=0
+    $InstanceCount = 0
   }
 
-  process
-  {
-    try
-    {
-      foreach($computer in $ComputerName)
-      {
+  process {
+    try {
+      foreach ($computer in $ComputerName) {
         Write-Verbose "ParameterSetName is '$($PSCmdlet.ParameterSetName)'"
 
-        if($PSCmdlet.ParameterSetName -eq 'name')
-        {
-              # Get the VM by Id if Name can convert to a guid
-              if($Name -as [guid])
-              {
-			Write-Verbose "Incoming value can cast to guid"
-			$vm = Get-VM -Id $Name -ErrorAction SilentlyContinue
-              }
-              else
-              {
-			$vm = Get-VM -Name $Name -ErrorAction SilentlyContinue
-              }
+        if ($PSCmdlet.ParameterSetName -eq 'name') {
+          # Get the VM by Id if Name can convert to a guid
+          if ($Name -as [guid]) {
+            Write-Verbose "Incoming value can cast to guid"
+            $vm = Get-VM -Id $Name -ErrorAction SilentlyContinue
+          }
+          else {
+            $vm = Get-VM -Name $Name -ErrorAction SilentlyContinue
+          }
         }
-        elseif($PSCmdlet.ParameterSetName -eq 'id')
-        {
-              $vm = Get-VM -Id $Id -ErrorAction SilentlyContinue
+        elseif ($PSCmdlet.ParameterSetName -eq 'id') {
+          $vm = Get-VM -Id $Id -ErrorAction SilentlyContinue
         }
-        else
-        {
+        else {
           $vm = $InputObject
         }
 
-        if($vm)
-        {
+        if ($vm) {
           Write-Verbose "Executing 'vmconnect.exe $computer $($vm.Name) -G $($vm.Id) -C $InstanceCount'"
           vmconnect.exe $computer $vm.Name -G $vm.Id -C $InstanceCount
         }
-        else
-        {
+        else {
           Write-Verbose "Cannot find vm: '$Name'"
         }
 
-        if($StartVM -and $vm)
-        {
-          if($vm.State -eq 'off')
-          {
+        if ($StartVM -and $vm) {
+          if ($vm.State -eq 'off') {
             Write-Verbose "StartVM was specified and VM state is 'off'. Starting VM '$($vm.Name)'"
             Start-VM -VM $vm
           }
-          else
-          {
+          else {
             Write-Verbose "Starting VM '$($vm.Name)'. Skipping, VM is not not in 'off' state."
           }
         }
 
-        $InstanceCount+=1
+        $InstanceCount += 1
         Write-Verbose "InstanceCount = $InstanceCount"
       }
     }
-    catch
-    {
+    catch {
       Write-Error $_
     }
   }

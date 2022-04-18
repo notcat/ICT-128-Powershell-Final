@@ -1,4 +1,13 @@
-# By Damon Ellenton
+<#
+    .SYNOPSIS
+    Creates users from a CSV
+
+    .DESCRIPTION
+    Creates users from a CSV, created for RAUDZ's CSV format
+
+    .EXAMPLE
+    PS> ./CreateUsersFromCSV.ps1
+#>
 
 # Import AD
 Import-Module ActiveDirectory

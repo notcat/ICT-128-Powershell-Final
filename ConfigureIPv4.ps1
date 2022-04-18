@@ -1,3 +1,14 @@
+<#
+    .SYNOPSIS
+    Configures IPv4 Connection settings 
+
+    .DESCRIPTION
+    Configures IPv4 Connection settings of a specified interface in a CLI
+
+    .EXAMPLE
+    PS> ./ConfigureIPv4.ps1
+#>
+
 Get-NetAdapter
 
 $int = Read-Host("What Interface Index of the adaptor do you want to change?")

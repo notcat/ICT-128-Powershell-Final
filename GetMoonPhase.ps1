@@ -1,3 +1,16 @@
+<#
+    .SYNOPSIS
+    Gets the current moon phase
+
+    .DESCRIPTION
+    Gets the current moon phase with an optional date. Date format is "2021-Mar-15"
+
+    .PARAMETER date
+    Date format is "2021-Mar-15"
+
+    .EXAMPLE
+    PS> ./GetMoonPhase.ps1 2021-Mar-15
+#>
 
 [CmdletBinding()]
 param (

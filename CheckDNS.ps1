@@ -2,6 +2,8 @@
     .Synopsis 
         Get the DNS servers list of each IP enabled network connection and tests the connection to google.com
 
+    .EXAMPLE
+    PS> ./CheckDNS.ps1
 #>
 
 Get-DnsClientServerAddress -AddressFamily IPv4

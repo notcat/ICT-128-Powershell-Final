@@ -1,3 +1,17 @@
+<#
+    .SYNOPSIS
+    Downloads a video from youtube
+
+    .DESCRIPTION
+    Downloads a video from youtube given a url
+
+    .PARAMETER url
+    Specifies the video to download from youtube
+
+    .EXAMPLE
+    PS> ./DownloadYoutubeVideo.ps1 -url https://www.youtube.com/watch?v=TKfS5zVfGBc
+#>  
+
 [CmdletBinding()]
 param (
     [Parameter()]

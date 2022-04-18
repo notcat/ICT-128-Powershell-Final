@@ -1,21 +1,13 @@
-# https://yt-dl.org/latest/youtube-dl.exe
+<#
+    .SYNOPSIS
+    Downloads and installs Youtube-dl
 
-# $env:Path -split ';'
-# https://www.techtarget.com/searchitoperations/answer/Manage-the-Windows-PATH-environment-variable-with-PowerShell
-function Add-PathVariable {
-    param (
-        [string]$addPath
-    )
-    if (Test-Path $addPath) {
-        $regexAddPath = [regex]::Escape($addPath)
-        $arrPath = $env:Path -split ';' | Where-Object { $_ -notMatch 
-            "^$regexAddPath\\?" }
-        $env:Path = ($arrPath + $addPath) -join ';'
-    }
-    else {
-        Throw "'$addPath' is not a valid path."
-    }
-}
+    .DESCRIPTION
+    Downloads and adds to the system enivormnet path, yt-dlp, a maintained fork of youtube-dl
+
+    .EXAMPLE
+    PS> ./DownloadYoutubeDL.ps1
+#>
 
 # Check if folder already exists
 if ((test-path "$env:APPDATA\youtube-dl") -eq $false) {

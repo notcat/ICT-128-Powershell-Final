@@ -1,3 +1,14 @@
+<#
+    .SYNOPSIS
+    Temporarily turns on Nicehash Quickminer Excavator
+
+    .DESCRIPTION
+    Temporarily turns on Nicehash Quickminer Excavator through sending a web request
+
+    .EXAMPLE
+    PS> ./NicehashQuickMinerTempOff.ps1
+#>
+
 Import-module .\ShowNotificationFunction.ps1 -Force
 
 # Send a request to the local QuickMiner service to stop mining

@@ -1,3 +1,14 @@
+<#
+    .SYNOPSIS
+    Remotely add a computer to a domain
+
+    .DESCRIPTION
+    Remotely add a computer to a domain through a CLI
+
+    .EXAMPLE
+    PS> ./RemotelyAddComputerToDomain.ps1
+#>
+
 $computername = Read-Host("What is the name of the remote computer you want to add to the domain?")
 $remoteuser = Read-Host("What is the Username of an administrator account on the remote computer?")
 Write-Host("------------")

@@ -1,7 +1,22 @@
-
 # https://den.dev/blog/powershell-windows-notification/
 
 function Show-Notification {
+    <#
+    .SYNOPSIS
+    Shows a notification
+
+    .DESCRIPTION
+    Shows a notification on Windows operating systems
+
+    .PARAMETER -ToastTitle
+    The top title of the notification
+
+    .PARAMETER ToastText
+    The content of the notification, below the ToastTitle
+
+    .EXAMPLE
+    PS> Show-Notification -ToastTitle damons cool -ToastText (hes not)
+#>
     [cmdletbinding()]
     Param (
         [string]

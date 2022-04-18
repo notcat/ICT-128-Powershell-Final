@@ -1,4 +1,16 @@
-﻿function Connect-VM {
+﻿<#
+    .SYNOPSIS
+    Creates a new Server 2022 VM
+
+    .DESCRIPTION
+    Creates a new Server 2022 VM through a CLI
+
+    .EXAMPLE
+    PS> ./CreateServer2022ISO.ps1
+#>
+
+
+function Connect-VM {
   [CmdletBinding(DefaultParameterSetName = 'name')]
 
   param(

@@ -1,3 +1,14 @@
+<#
+    .SYNOPSIS
+    Changes the DNS servers
+
+    .DESCRIPTION
+    Changes the DNS servers through a text based CLI
+
+    .EXAMPLE
+    PS> ./ChangeDNSServers.ps1
+#>
+
 Get-NetAdapter
 
 $int = Read-Host("What Interface Index of the adaptor do you want to change?")

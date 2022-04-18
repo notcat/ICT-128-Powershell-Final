@@ -1,3 +1,14 @@
+<#
+    .SYNOPSIS
+    CLI to start a Minecraft Forge server
+
+    .DESCRIPTION
+    CLI to start a Minecraft Forge server
+
+    .EXAMPLE
+    PS> ./StartForgeServer.ps1
+#>
+
 Write-Host("Select what version of Java you would like to use")
 $installedversions = Get-ChildItem -Path "C:\Program Files\Java" | Select-Object -Expand Name 
 

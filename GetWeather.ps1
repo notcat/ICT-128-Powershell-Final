@@ -1,3 +1,17 @@
+<#
+    .SYNOPSIS
+    Gets the weather
+
+    .DESCRIPTION
+    Gets the weather with an optional airport parameter. Uses the 3 letter airport codes.
+
+    .PARAMETER username
+    Uses the 3 letter airport codes.
+
+    .EXAMPLE
+    PS> ./DisableADUser.ps1 -airport JFK
+#>
+
 
 [CmdletBinding()]
 param (

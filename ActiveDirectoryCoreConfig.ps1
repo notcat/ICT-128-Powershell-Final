@@ -1,8 +1,13 @@
-#
-# Windows PowerShell script for AD DS Deployment
-#
+<#
+    .SYNOPSIS
+    Core configuration of an new active directory domain
 
-# By Damon Ellenton
+    .DESCRIPTION
+    Creates a new domain and promotes itself to a domain controller
+
+    .EXAMPLE
+    PS> ./ActiveDirectoryCoreConfig.ps1
+#>
 
 $domain_name = Read-Host "Enter the bounded namespace (int.company.com)"
 $netbios_name = Read-Host "Enter the NetBIOS name"

@@ -1,4 +1,15 @@
-﻿function Connect-VM
+﻿<#
+    .SYNOPSIS
+    Creates a new Server 2019 VM
+
+    .DESCRIPTION
+    Creates a new Server 2019 VM through a CLI
+
+    .EXAMPLE
+    PS> ./CreateServer2019diffVM.ps1
+#>
+
+function Connect-VM
 {
   [CmdletBinding(DefaultParameterSetName='name')]
 
